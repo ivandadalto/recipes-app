@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import ContextRecipes from '../context/ContextRecipes';
-import profileIcon from '../images/profileIcon.svg';
-import searchIcon from '../images/searchIcon.svg';
+import avat from '../images/avat.png';
+import lupa from '../images/lupa.png';
 import SearchBar from './SearchBar';
+import imgHeader from '../images/imgHeader.png';
+import '../style/Header.css';
 
 export default function Header() {
   const { title,
@@ -12,43 +14,52 @@ export default function Header() {
   const history = useHistory();
 
   return (
-    <header>
-      <h4 data-testid="page-title">{title}</h4>
+    <header className="header">
+      <div className="header_div">
+        <div className="header_div_title">
+          <img src={ imgHeader } alt="imagem logo header" />
+          <h4 data-testid="page-title" className="header_title">{title}</h4>
+        </div>
+        <div className="header_div_btn">
+          <button
+            className="header_btn"
+            type="button"
+            onClick={ () => {
+              history.push('./profile');
+            } }
+          >
+            <img
+              src={ avat }
+              data-testid="profile-top-btn"
+              alt="profile icon"
+            />
+          </button>
+          {
+            (title === 'Done Recipes'
+        || title === 'Favorite Recipes'
+        || title === 'Profile')
+              ? null
+              : (
+                <button
+                  className="header_btn"
+                  type="button"
+                  onClick={ () => {
+                    setSearch(!search);
+                  } }
+                >
+                  <img
+                    src={ lupa }
+                    data-testid="search-top-btn"
+                    alt="search icon"
+                  />
+                </button>
+              )
+          }
+        </div>
+      </div>
       {search
         ? <SearchBar />
         : null}
-      <button
-        type="button"
-        onClick={ () => {
-          history.push('./profile');
-        } }
-      >
-        <img
-          src={ profileIcon }
-          data-testid="profile-top-btn"
-          alt="profile icon"
-        />
-      </button>
-      {
-        (title === 'Done Recipes'
-      || title === 'Favorite Recipes'
-      || title === 'Profile')
-          ? null
-          : (
-            <button
-              type="button"
-              onClick={ () => {
-                setSearch(!search);
-              } }
-            >
-              <img
-                src={ searchIcon }
-                data-testid="search-top-btn"
-                alt="search icon"
-              />
-            </button>
-          )
-      }
     </header>
   );
 }

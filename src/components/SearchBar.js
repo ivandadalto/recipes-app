@@ -72,9 +72,10 @@ export default function SearchBar() {
   };
 
   return (
-    <div>
+    <div className="search_div">
       <label htmlFor="search">
         <input
+          className="search_input"
           type="text"
           name="search"
           id="search"
@@ -86,6 +87,7 @@ export default function SearchBar() {
       <label htmlFor="ingredient">
         Ingrediente
         <input
+          className="search_radio"
           type="radio"
           id="ingredient"
           value="ingredient"
@@ -97,6 +99,7 @@ export default function SearchBar() {
       <label htmlFor="name">
         Name
         <input
+          className="search_radio"
           type="radio"
           id="name"
           value="name"
@@ -108,6 +111,7 @@ export default function SearchBar() {
       <label htmlFor="first-letter">
         First letter
         <input
+          className="search_radio"
           type="radio"
           id="first-letter"
           value="firstLetter"
@@ -117,6 +121,7 @@ export default function SearchBar() {
         />
       </label>
       <button
+        className="search_btn"
         data-testid="exec-search-btn"
         type="button"
         onClick={ handleBtnBuscar }
