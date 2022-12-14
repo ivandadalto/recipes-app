@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { saveUserLocalStorage } from '../service/LocalStorage';
+import '../style/Login.css';
+import logoRecipesApp from '../images/logoRecipesApp.png';
 
 export default function Login() {
   const history = useHistory();
@@ -19,35 +21,46 @@ export default function Login() {
   }, [password, email]);
 
   return (
-    <div>
-      <label htmlFor="email">
-        <input
-          type="email"
-          data-testid="email-input"
-          value={ email }
-          onChange={ (e) => setEmail(e.target.value) }
-        />
-      </label>
-      <label htmlFor="email">
-        <input
-          type="password"
-          data-testid="password-input"
-          value={ password }
-          onChange={ (e) => setPassword(e.target.value) }
-        />
-      </label>
-      <button
-        type="button"
-        data-testid="login-submit-btn"
-        disabled={ disabled }
-        onClick={ () => {
-          saveUserLocalStorage({ email });
-          history.push('./meals');
-        } }
-      >
-        Enter
+    <div className="login_container">
+      <div className="login_Divlogo">
+        <img className="login_logo" src={ logoRecipesApp } alt="logo app" />
+      </div>
+      <div className="login_div">
+        <h1 className="login_title">Login</h1>
+        <label htmlFor="email">
+          <input
+            className="login_input"
+            placeholder="Email"
+            type="email"
+            data-testid="email-input"
+            value={ email }
+            onChange={ (e) => setEmail(e.target.value) }
+          />
+        </label>
+        <label htmlFor="email">
+          <input
+            className="login_input"
+            placeholder="Password"
+            type="password"
+            data-testid="password-input"
+            value={ password }
+            onChange={ (e) => setPassword(e.target.value) }
+          />
+        </label>
+        <button
+          className="login_button"
+          type="button"
+          data-testid="login-submit-btn"
+          disabled={ disabled }
+          onClick={ () => {
+            saveUserLocalStorage({ email });
+            history.push('./meals');
+          } }
+        >
+          Enter
 
-      </button>
+        </button>
+      </div>
     </div>
   );
 }
